@@ -8,4 +8,4 @@ resources:
 namespace: dev
 images:
 - name: registry.gitlab.com/andrew.kaczynski/gitops-webapp
-  newTag: a07ee50b104120e8d77058d128e7823f374aaf21
+  newTag: a7341a9dcf6ea3b9dcbb61e7575444e600f8586c
