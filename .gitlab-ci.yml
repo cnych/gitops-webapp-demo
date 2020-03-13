@@ -38,7 +38,7 @@ deploy-dev:
     - git config --global user.email "gitlab@gitlab.com"
     - git config --global user.name "GitLab CI/CD"
   script:
-    - git checkout -B master
+    - git pull
     - cd deployment/dev
     - kustomize edit set image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - cat kustomization.yaml
