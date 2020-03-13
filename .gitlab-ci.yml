@@ -38,11 +38,11 @@ deploy-dev:
     - git config --global user.email "gitlab@gitlab.com"
     - git config --global user.name "GitLab CI/CD"
   script:
-    - git pull
+    - git pull remote master
     - cd deployment/dev
     - kustomize edit set image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - cat kustomization.yaml
-    - git commit -am '[skip ci] GitLab CI build auto commit dev update'
+    - git commit -am '[skip ci] DEV image update'
     - git push origin master
   only:
     - master
@@ -58,11 +58,11 @@ deploy-prod:
     - git config --global user.email "gitlab@gitlab.com"
     - git config --global user.name "GitLab CI/CD"
   script:
-    - git checkout -B master
+    - git pull remote master
     - cd deployment/prod
     - kustomize edit set image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - cat kustomization.yaml
-    - git commit -am '[skip ci] GitLab CI build auto commit prod update'
+    - git commit -am '[skip ci] PROD image update'
     - git push origin master
   only:
     - master
