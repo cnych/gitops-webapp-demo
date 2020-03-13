@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gitops-webapp
+  name: gitops-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitops-webapp
+  template:
+    metadata:
+      labels:
+        app: gitops-webapp
+    spec:
+      containers:
+      - image: registry.gitlab.com/andrew.kaczynski/gitops-webapp:1.0
+        name: gitops-webapp
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: http
+        env:
+        - name: APP_PORT
+          value: "5000"

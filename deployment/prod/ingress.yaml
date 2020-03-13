@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gitops-webapp
+  labels:
+    app: gitops-webapp
+  annotations: 
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: webapp.prod.minikube.local
+    http:
+      paths:
+      - backend:
+          serviceName: gitops-webapp-svc
+          servicePort: http
+
