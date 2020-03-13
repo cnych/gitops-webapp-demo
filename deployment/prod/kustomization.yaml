@@ -7,5 +7,7 @@ resources:
 - service.yaml
 namespace: prod
 images:
+- name: registry.gitlab.com/andrew.kaczynski/gitops-webapp
+  newTag: a7341a9dcf6ea3b9dcbb61e7575444e600f8586c
 - name: registry.gitlab.com/andrew.kaczynski/web-app-gitops-example
   newTag: "1.0"
