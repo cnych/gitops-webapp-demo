@@ -9,5 +9,3 @@ namespace: dev
 images:
 - name: cnych/gitops-webapp
   newTag: 22e42c30
-- name: registry.gitlab.com/andrew.kaczynski/gitops-webapp
-  newTag: bb26f865096103e87758991f4f1b91e3eed1fdae

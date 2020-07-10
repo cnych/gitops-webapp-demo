@@ -15,7 +15,7 @@ spec:
         app: gitops-webapp
     spec:
       containers:
-      - image: registry.gitlab.com/andrew.kaczynski/gitops-webapp:1.0
+      - image: cnych/gitops-webapp:22e42c30
         name: gitops-webapp
         imagePullPolicy: Always
         ports:
