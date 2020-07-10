@@ -22,9 +22,8 @@ publish:
     name: cnych/kaniko-executor:debug
     entrypoint: [""]
   script:
-    - echo $CI_REGISTRY $CI_REGISTRY_USER $CI_REGISTRY_PASSWORD $CI_REGISTRY_IMAGE $CI_COMMIT_SHA
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context . --dockerfile ./Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile ./Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
   dependencies:
     - build  
   only:
@@ -40,7 +39,7 @@ deploy-dev:
   script:
     - git checkout -B master
     - cd deployment/dev
-    - kustomize edit set image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - kustomize edit set image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
     - cat kustomization.yaml
     - git commit -am '[skip ci] DEV image update'
     - git push origin master
@@ -58,7 +57,7 @@ deploy-prod:
     - git checkout -B master
     - git pull origin master
     - cd deployment/prod
-    - kustomize edit set image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - kustomize edit set image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
     - cat kustomization.yaml
     - git commit -am '[skip ci] PROD image update'
     - git push origin master
