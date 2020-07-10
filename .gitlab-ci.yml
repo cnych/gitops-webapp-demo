@@ -33,7 +33,7 @@ deploy-dev:
   stage: deploy-dev
   image: cnych/kustomize:v1.0
   before_script:
-    - git remote set-url origin http://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
+    - git remote set-url origin http://${CI_USERNAME}:${CI_PASSWORD}@git.k8s.local/course/gitops-webapp.git
     - git config --global user.email "gitlab@git.k8s.local"
     - git config --global user.name "GitLab CI/CD"
   script:
@@ -50,7 +50,7 @@ deploy-prod:
   stage: deploy-prod
   image: cnych/kustomize:v1.0
   before_script:
-    - git remote set-url origin http://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
+    - git remote set-url origin http://${CI_USERNAME}:${CI_PASSWORD}@git.k8s.local/course/gitops-webapp.git
     - git config --global user.email "gitlab@git.k8s.local"
     - git config --global user.name "GitLab CI/CD"
   script:
