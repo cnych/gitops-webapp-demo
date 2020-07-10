@@ -8,7 +8,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-  - host: webapp.prod.minikube.local
+  - host: webapp.prod.k8s.local
     http:
       paths:
       - backend:

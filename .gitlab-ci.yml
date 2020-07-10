@@ -19,11 +19,11 @@ build:
 publish:
   stage: publish
   image:
-    name: gcr.io/kaniko-project/executor:debug
+    name: cnych/kaniko-executor:v0.22.0
     entrypoint: [""]
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile ./Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - /kaniko/executor --context . --dockerfile ./Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
   dependencies:
     - build  
   only:
@@ -36,7 +36,7 @@ deploy-dev:
     - apk add --no-cache git curl bash
     - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
     - mv kustomize /usr/local/bin/
-    - git remote set-url origin https://${CI_USERNAME}:${CI_PUSH_TOKEN}@gitlab.com/andrew.kaczynski/gitops-webapp.git
+    - git remote set-url origin https://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
     - git config --global user.email "gitlab@gitlab.com"
     - git config --global user.name "GitLab CI/CD"
   script:
@@ -56,7 +56,7 @@ deploy-prod:
     - apk add --no-cache git curl bash
     - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
     - mv kustomize /usr/local/bin/
-    - git remote set-url origin https://${CI_USERNAME}:${CI_PUSH_TOKEN}@gitlab.com/andrew.kaczynski/gitops-webapp.git
+    - git remote set-url origin https://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
     - git config --global user.email "gitlab@gitlab.com"
     - git config --global user.name "GitLab CI/CD"
   script:
