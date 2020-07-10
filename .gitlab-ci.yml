@@ -31,12 +31,9 @@ publish:
 
 deploy-dev:
   stage: deploy-dev
-  image: alpine:3.8
+  image: cnych/kustomize:v1.0
   before_script:
-    - apk add --no-cache git curl bash
-    - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-    - mv kustomize /usr/local/bin/
-    - git remote set-url origin https://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
+    - git remote set-url origin http://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
     - git config --global user.email "gitlab@git.k8s.local"
     - git config --global user.name "GitLab CI/CD"
   script:
@@ -51,12 +48,9 @@ deploy-dev:
 
 deploy-prod:
   stage: deploy-prod
-  image: alpine:3.8
+  image: cnych/kustomize:v1.0
   before_script:
-    - apk add --no-cache git curl bash
-    - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-    - mv kustomize /usr/local/bin/
-    - git remote set-url origin https://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
+    - git remote set-url origin http://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
     - git config --global user.email "gitlab@git.k8s.local"
     - git config --global user.name "GitLab CI/CD"
   script:
