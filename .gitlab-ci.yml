@@ -37,7 +37,7 @@ deploy-dev:
     - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
     - mv kustomize /usr/local/bin/
     - git remote set-url origin https://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
-    - git config --global user.email "gitlab@gitlab.com"
+    - git config --global user.email "gitlab@git.k8s.local"
     - git config --global user.name "GitLab CI/CD"
   script:
     - git checkout -B master
@@ -57,7 +57,7 @@ deploy-prod:
     - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
     - mv kustomize /usr/local/bin/
     - git remote set-url origin https://${CI_USERNAME}:${CI_PUSH_TOKEN}@git.k8s.local/course/gitops-webapp.git
-    - git config --global user.email "gitlab@gitlab.com"
+    - git config --global user.email "gitlab@git.k8s.local"
     - git config --global user.name "GitLab CI/CD"
   script:
     - git checkout -B master
